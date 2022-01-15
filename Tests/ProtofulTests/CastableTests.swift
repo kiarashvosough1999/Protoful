@@ -1,5 +1,8 @@
-//  Protoful.swift
-//  Protoful
+//
+//  CastableTests.swift
+//  ProtofulTests
+//
+//  Created by Kiarash Vosough on 1/15/22.
 //
 //  Copyright 2022 KiarashVosough and other contributors
 //
@@ -22,9 +25,13 @@
 //  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-public struct Protoful {
-    public private(set) var text = "Hello, World!"
+import XCTest
 
-    public init() {
+final class CastableTests: XCTestCase {
+
+    
+    func testUnsafeDowncast() throws {
+        
     }
+    
 }
