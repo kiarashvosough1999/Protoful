@@ -27,48 +27,49 @@
 
 import Foundation
 
-protocol Castable {
+public protocol Castable {
     
-    func forceCast<U>(to type: U) -> U
+    func forceCast<U>(to type: U.Type) -> U
     
-    func cast<U>(to type: U) -> U?
+    func cast<U>(to type: U.Type) -> U?
     
-    func unsafeBitCast<U>(to type: U.Type) -> U
+    func unsafeBitCast<U>(to type: U.Type) throws -> U
     
-    func unsafeDownCast<U>(to type: U.Type) -> U where U: AnyObject
+    func unsafeDownCast<U>(to type: U.Type) throws -> U where U: AnyObject
     
 }
 
-extension Castable where Self: AnyObject {
+public extension Castable where Self: AnyObject {
     
-    func unsafeDownCast<U>(to type: U.Type) -> U where U: AnyObject {
+    func unsafeDownCast<U>(to type: U.Type) throws -> U where U: AnyObject {
         Swift.unsafeDowncast(self, to: type.self)
     }
 }
 
-extension Castable {
+public extension Castable {
     
     func isReferenceType() -> Bool {
         return Swift.type(of: self) is AnyClass
     }
     
-    func forceCast<U>(to type: U) -> U {
+    func forceCast<U>(to type: U.Type) -> U {
         return self as! U
     }
     
-    func cast<U>(to type: U) -> U? {
+    func cast<U>(to type: U.Type) -> U? {
         return self as? U
     }
     
-    func unsafeBitCast<U>(to type: U.Type) -> U {
-        guard MemoryLayout<Self>.size != MemoryLayout<U>.size
-        else { fatalError("coudnot bitcast two type with different bit count") }
+    func unsafeBitCast<U>(to type: U.Type) throws -> U {
+        if MemoryLayout<Self>.size != MemoryLayout<U>.size{
+            throw ProtoError.castingError(reason: .bitcastTwoVariableWithDifferentBitCount)
+        }
         
-        Swift.unsafeBitCast(self, to: U.self)
+        return Swift.unsafeBitCast(self, to: U.self)
     }
     
-    func unsafeDownCast<U>(to type: U.Type) -> U where U: AnyObject {
-        fatalError("self is not refrence type")
+    func unsafeDownCast<U>(to type: U.Type) throws -> U where U: AnyObject {
+        throw ProtoError.castingError(reason: .downCastingNonRefrencableVariable)
     }
 }
 

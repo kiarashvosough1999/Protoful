@@ -8,6 +8,10 @@
 import Foundation
 @testable import Protoful
 
-final class parentTestCastableMock: CastableMock {
-    
+class parentTestCastableMock: Castable {
+    var testNumbder = 10
 }
+
+final class childTestCastableMock: parentTestCastableMock {}
+
+struct TestCastableMockNonRefrence: Castable {}

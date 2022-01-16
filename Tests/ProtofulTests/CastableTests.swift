@@ -30,8 +30,68 @@ import XCTest
 final class CastableTests: XCTestCase {
 
     
-    func testUnsafeDowncast() throws {
+    func testDownCast() throws {
         
+        let mock: parentTestCastableMock = childTestCastableMock()
+        
+        let down = mock.cast(to: childTestCastableMock.self)
+
+        XCTAssertNotNil(down)
     }
     
+    func testForceCast() throws {
+        
+        let mock: parentTestCastableMock = childTestCastableMock()
+        
+        let down: childTestCastableMock? = mock.forceCast(to: childTestCastableMock.self)
+
+        XCTAssertNotNil(down)
+    }
+    
+    func testUnsafeBitCastWithEqualBit() throws {
+        
+        let mock: parentTestCastableMock = childTestCastableMock()
+        
+        let down: childTestCastableMock? = try mock.unsafeBitCast(to: childTestCastableMock.self)
+
+        XCTAssertNotNil(down)
+    }
+    
+    func testUnsafeDownCast() throws {
+        
+        let mock: parentTestCastableMock = childTestCastableMock()
+        
+        let down: childTestCastableMock? = try mock.unsafeDownCast(to: childTestCastableMock.self)
+
+        XCTAssertNotNil(down)
+    }
+    
+    func testUnsafeDownCastNonRefrenceType() throws {
+        
+        let mock = TestCastableMockNonRefrence()
+
+        XCTAssertThrowsError(try mock.unsafeDownCast(to: childTestCastableMock.self))
+    }
+    
+    func testRefrenceType() throws {
+        
+        let mock = childTestCastableMock()
+        
+
+        XCTAssertTrue(mock.isReferenceType())
+    }
+    
+    func testNonRefrenceType() throws {
+        
+        let mock = TestCastableMockNonRefrence()
+
+        XCTAssertFalse(mock.isReferenceType())
+    }
+    
+    func testUnsafeBitCastWithNonEqualBit() throws {
+        
+        let mock = childTestCastableMock()
+        
+        XCTAssertThrowsError(try mock.unsafeBitCast(to: Any.self))
+    }
 }
