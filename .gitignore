@@ -39,3 +39,4 @@ Pods/
 # App code 
 
 .idea/
+.swiftpm/xcode/xcshareddata/

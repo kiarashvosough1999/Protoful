@@ -1,5 +1,8 @@
-//  Protoful.swift
+//
+//  Error.swift
 //  Protoful
+//
+//  Created by Kiarash Vosough on 1/16/22.
 //
 //  Copyright 2022 KiarashVosough and other contributors
 //
@@ -21,5 +24,14 @@
 //  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 //  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+import Foundation
 
-let version = "1.0.0"
+public enum ProtoError: Error {
+    
+    case castingError(reason: CastingError)
+    
+    public enum CastingError: Error {
+        case bitcastTwoVariableWithDifferentBitCount
+        case downCastingNonRefrencableVariable
+    }
+}
