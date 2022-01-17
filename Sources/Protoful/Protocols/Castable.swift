@@ -27,15 +27,21 @@
 
 import Foundation
 
+infix operator ->>: DefaultPrecedence
+
 public protocol Castable {
     
     func forceCast<U>(to type: U.Type) -> U
+    
+    func AS<U>(to type: U.Type) -> U?
     
     func cast<U>(to type: U.Type) -> U?
     
     func unsafeBitCast<U>(to type: U.Type) throws -> U
     
     func unsafeDownCast<U>(to type: U.Type) throws -> U where U: AnyObject
+    
+    static func ->> <U>(lhs: Self, rhs: U.Type) -> U?
     
 }
 
@@ -52,12 +58,20 @@ public extension Castable {
         return Swift.type(of: self) is AnyClass
     }
     
+    static func ->> <U>(lhs: Self, rhs: U.Type) -> U? {
+        lhs as? U
+    }
+    
     func forceCast<U>(to type: U.Type) -> U {
-        return self as! U
+        self as! U
+    }
+    
+    func AS<U>(to type: U.Type) -> U? {
+        self as? U
     }
     
     func cast<U>(to type: U.Type) -> U? {
-        return self as? U
+        self as? U
     }
     
     func unsafeBitCast<U>(to type: U.Type) throws -> U {
