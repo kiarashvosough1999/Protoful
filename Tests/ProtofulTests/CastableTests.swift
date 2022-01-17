@@ -26,6 +26,7 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import XCTest
+@testable import Protoful
 
 final class CastableTests: XCTestCase {
 
@@ -93,5 +94,23 @@ final class CastableTests: XCTestCase {
         let mock = childTestCastableMock()
         
         XCTAssertThrowsError(try mock.unsafeBitCast(to: Any.self))
+    }
+    
+    func testCastOperator() throws {
+        
+        let mock: parentTestCastableMock = childTestCastableMock()
+
+        let down = mock ->> childTestCastableMock.self
+        
+        XCTAssertNotNil(down)
+    }
+    
+    func testAsMethod() throws {
+        
+        let mock: parentTestCastableMock = childTestCastableMock()
+
+        let down = mock.AS(to: childTestCastableMock.self)
+        
+        XCTAssertNotNil(down)
     }
 }
