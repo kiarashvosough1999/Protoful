@@ -26,6 +26,7 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
+import CoreGraphics
 
 public protocol AdvancedMultiplicable {
     func multiply(_ any: Self) -> Self
@@ -60,6 +61,7 @@ extension Double: AdvancedMultiplicable {}
 
 extension Float: AdvancedMultiplicable {}
 
+@available(iOS 14.0, *)
 @available(macOS 11.0, *)
 extension Float16: AdvancedMultiplicable {}
 

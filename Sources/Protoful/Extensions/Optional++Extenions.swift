@@ -31,7 +31,7 @@ import Foundation
 
 public extension Optional {
     
-    public enum OptionalError: Error {
+    enum OptionalError: Error {
         case Nil
         case callBackNil
     }
