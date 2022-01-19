@@ -57,6 +57,7 @@ extension Double: AdvancedComparable {}
 
 extension Float: AdvancedComparable {}
 
+@available(iOS 14.0, *)
 @available(macOS 11.0, *)
 extension Float16: AdvancedComparable {}
 
