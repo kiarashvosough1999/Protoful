@@ -1,8 +1,8 @@
 //
-//  AdvancedMultiplicable.swift
+//  AdvancedPower.swift
 //  Protful
 //
-//  Created by Kiarash Vosough on 1/19/22.
+//  Created by Kiarash Vosough on 1/22/22.
 //
 //  Copyright 2022 KiarashVosough and other contributors
 //
@@ -28,47 +28,68 @@
 import Foundation
 import CoreGraphics
 
-public protocol AdvancedMultiplicable {
-    func multiply(_ any: Self) -> Self
+public protocol AdvancedPower {
+    
+    var square: Double { get }
+    
+    func power(_ any: Self) -> Double
+    
+    func root(_ any: Self) -> Double
 }
 
-public extension AdvancedMultiplicable where Self: BinaryFloatingPoint {
+public extension AdvancedPower where Self: BinaryFloatingPoint {
     
-    func multiply(_ any: Self) -> Self {
-        self * any
+    var square: Double {
+        pow(Double(self), Double(self))
+    }
+    
+    func power(_ any: Self) -> Double {
+        pow(Double(self), Double(any))
+    }
+    
+    func root(_ any: Self) -> Double {
+        pow(Double(self), Double(1/any))
     }
 }
 
-public extension AdvancedMultiplicable where Self: BinaryInteger {
+public extension AdvancedPower where Self: BinaryInteger {
     
-    func multiply(_ any: Self) -> Self {
-        self * any
+    var square: Double {
+        pow(Double(self), Double(self))
+    }
+    
+    func power(_ any: Self) -> Double {
+        pow(Double(self), Double(any))
+    }
+    
+    func root(_ any: Self) -> Double {
+        pow(Double(self), Double(1/any))
     }
 }
 
 // MARK: - Primitive types
 
-extension Double: AdvancedMultiplicable {}
+extension Double: AdvancedPower {}
 
-extension Float: AdvancedMultiplicable {}
+extension Float: AdvancedPower {}
 
 @available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
-extension Float16: AdvancedMultiplicable {}
+extension Float16: AdvancedPower {}
 
-extension CGFloat: AdvancedMultiplicable {}
+extension CGFloat: AdvancedPower {}
 
-extension Int: AdvancedMultiplicable {}
+extension Int: AdvancedPower {}
 
-extension Int8: AdvancedMultiplicable {}
+extension Int8: AdvancedPower {}
 
-extension Int32: AdvancedMultiplicable {}
+extension Int32: AdvancedPower {}
 
-extension Int64: AdvancedMultiplicable {}
+extension Int64: AdvancedPower {}
 
-extension UInt: AdvancedMultiplicable {}
+extension UInt: AdvancedPower {}
 
-extension UInt8: AdvancedMultiplicable {}
+extension UInt8: AdvancedPower {}
 
-extension UInt32: AdvancedMultiplicable {}
+extension UInt32: AdvancedPower {}
 
-extension UInt64: AdvancedMultiplicable {}
+extension UInt64: AdvancedPower {}

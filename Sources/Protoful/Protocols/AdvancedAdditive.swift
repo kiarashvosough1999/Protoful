@@ -1,6 +1,6 @@
 //
-//  AdvancedMultiplicableTests.swift
-//  ProtofulTests
+//  AdvancedAdditive.swift
+//  Protful
 //
 //  Created by Kiarash Vosough on 1/20/22.
 //
@@ -26,32 +26,49 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
-import XCTest
-@testable import Protoful
+import CoreGraphics
 
-final class AdvancedMultiplicableTests: XCTestCase {
+public protocol AdvancedAdditive {
+    func plus(_ any: Self) -> Self
+}
+
+public extension AdvancedAdditive where Self: BinaryFloatingPoint {
     
-    // MARK: - Int
-    
-    func testMultiplyInt() throws {
-        let number: Int = 20
-        
-        XCTAssertEqual(number.multiply(10), 200)
-    }
-    
-    // MARK: - Double
-    
-    func testMultiplyDouble() throws {
-        let number: Double = 20.1000
-        
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
-    }
-    
-    // MARK: - Float
-    
-    func testMultiplyFloat() throws {
-        let number: Float = 20.1000
-        
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
+    func plus(_ any: Self) -> Self {
+        self + any
     }
 }
+
+public extension AdvancedAdditive where Self: BinaryInteger {
+    
+    func plus(_ any: Self) -> Self {
+        self + any
+    }
+}
+
+// MARK: - Primitive types
+
+extension Double: AdvancedAdditive {}
+
+extension Float: AdvancedAdditive {}
+
+@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
+extension Float16: AdvancedAdditive {}
+
+extension CGFloat: AdvancedAdditive {}
+
+extension Int: AdvancedAdditive {}
+
+extension Int8: AdvancedAdditive {}
+
+extension Int32: AdvancedAdditive {}
+
+extension Int64: AdvancedAdditive {}
+
+extension UInt: AdvancedAdditive {}
+
+extension UInt8: AdvancedAdditive {}
+
+extension UInt32: AdvancedAdditive {}
+
+extension UInt64: AdvancedAdditive {}

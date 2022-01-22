@@ -1,6 +1,6 @@
 //
-//  AdvancedMultiplicableTests.swift
-//  ProtofulTests
+//  AdvancedSubtractive.swift
+//  Protful
 //
 //  Created by Kiarash Vosough on 1/20/22.
 //
@@ -26,32 +26,49 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
-import XCTest
-@testable import Protoful
+import CoreGraphics
 
-final class AdvancedMultiplicableTests: XCTestCase {
+public protocol AdvancedSubtractive {
+    func minus(_ any: Self) -> Self
+}
+
+public extension AdvancedSubtractive where Self: FloatingPoint {
     
-    // MARK: - Int
-    
-    func testMultiplyInt() throws {
-        let number: Int = 20
-        
-        XCTAssertEqual(number.multiply(10), 200)
-    }
-    
-    // MARK: - Double
-    
-    func testMultiplyDouble() throws {
-        let number: Double = 20.1000
-        
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
-    }
-    
-    // MARK: - Float
-    
-    func testMultiplyFloat() throws {
-        let number: Float = 20.1000
-        
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
+    func minus(_ any: Self) -> Self {
+        self - any
     }
 }
+
+public extension AdvancedSubtractive where Self: BinaryInteger {
+    
+    func minus(_ any: Self) -> Self {
+        self - any
+    }
+}
+
+// MARK: - Primitive types
+
+extension Double: AdvancedSubtractive {}
+
+extension Float: AdvancedSubtractive {}
+
+@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
+extension Float16: AdvancedSubtractive {}
+
+extension CGFloat: AdvancedSubtractive {}
+
+extension Int: AdvancedSubtractive {}
+
+extension Int8: AdvancedSubtractive {}
+
+extension Int32: AdvancedSubtractive {}
+
+extension Int64: AdvancedSubtractive {}
+
+extension UInt: AdvancedSubtractive {}
+
+extension UInt8: AdvancedSubtractive {}
+
+extension UInt32: AdvancedSubtractive {}
+
+extension UInt64: AdvancedSubtractive {}
