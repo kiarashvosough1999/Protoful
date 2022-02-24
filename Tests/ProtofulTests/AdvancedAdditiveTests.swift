@@ -1,8 +1,8 @@
 //
-//  AdvancedMultiplicableTests.swift
+//  AdvancedAdditiveTests.swift
 //  ProtofulTests
 //
-//  Created by Kiarash Vosough on 1/20/22.
+//  Created by Kiarash Vosough on 1/23/22.
 //
 //  Copyright 2022 KiarashVosough and other contributors
 //
@@ -29,29 +29,29 @@ import Foundation
 import XCTest
 @testable import Protoful
 
-final class AdvancedMultiplicableTests: XCTestCase {
+final class AdvancedAdditiveTests: XCTestCase {
     
     // MARK: - Int
     
-    func testMultiplyInt() throws {
+    func testPlusInt() throws {
         let number: Int = 20
         
-        XCTAssertEqual(number.multiply(10), 200)
+        XCTAssertEqual(number.plus(10), 30)
     }
     
     // MARK: - Double
     
-    func testMultiplyDouble() throws {
+    func testPlusDouble() throws {
         let number: Double = 20.1000
         
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
+        XCTAssertEqual(String(format: "%.4f", number.plus(10)), "30.1000")
     }
     
     // MARK: - Float
     
-    func testMultiplyFloat() throws {
+    func testPlusFloat() throws {
         let number: Float = 20.1000
         
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
+        XCTAssertEqual(String(format: "%.4f", number.plus(10)), "30.1000")
     }
 }

@@ -1,10 +1,8 @@
 //
-//  AdvancedMultiplicableTests.swift
+//  AdvancedPowerTests.swift
 //  ProtofulTests
 //
-//  Created by Kiarash Vosough on 1/20/22.
-//
-//  Copyright 2022 KiarashVosough and other contributors
+//  Created by Kiarash Vosough on 1/23/22.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining
 //  a copy of this software and associated documentation files (the
@@ -29,29 +27,65 @@ import Foundation
 import XCTest
 @testable import Protoful
 
-final class AdvancedMultiplicableTests: XCTestCase {
+final class AdvancedPowerTests: XCTestCase {
     
     // MARK: - Int
     
-    func testMultiplyInt() throws {
-        let number: Int = 20
+    func testPowerInt() throws {
+        let number: Int = 2
         
-        XCTAssertEqual(number.multiply(10), 200)
+        XCTAssertEqual(number.power(5), 32)
+    }
+    
+    func testSquareInt() throws {
+        let number: Int = 2
+        
+        XCTAssertEqual(number.square, 4)
+    }
+    
+    func testRootInt() throws {
+        let number: Int = 1024
+        
+        XCTAssertEqual(number.root(10), 2)
     }
     
     // MARK: - Double
     
-    func testMultiplyDouble() throws {
+    func testPowerDouble() throws {
         let number: Double = 20.1000
         
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
+        XCTAssertEqual(String(format: "%.2f", number.power(2)), "404.01")
+    }
+    
+    func testSquareDouble() throws {
+        let number: Double = 20.1000
+        
+        XCTAssertEqual(String(format: "%.2f", number.square), "404.01")
+    }
+    
+    func testRootDouble() throws {
+        let number: Double = 1024.0
+        
+        XCTAssertEqual(number.root(10), 2)
     }
     
     // MARK: - Float
     
-    func testMultiplyFloat() throws {
+    func testPowerFloat() throws {
         let number: Float = 20.1000
         
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
+        XCTAssertEqual(String(format: "%.2f", number.power(2)), "404.01")
+    }
+    
+    func testSquareFloat() throws {
+        let number: Float = 20.1000
+        
+        XCTAssertEqual(String(format: "%.2f", number.square), "404.01")
+    }
+    
+    func testRootFloat() throws {
+        let number: Float = 1024.0
+        
+        XCTAssertEqual(number.root(10), 2)
     }
 }

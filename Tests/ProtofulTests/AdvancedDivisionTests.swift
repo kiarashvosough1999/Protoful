@@ -1,5 +1,5 @@
 //
-//  AdvancedMultiplicableTests.swift
+//  AdvancedDivisionTests.swift
 //  ProtofulTests
 //
 //  Created by Kiarash Vosough on 1/20/22.
@@ -29,29 +29,33 @@ import Foundation
 import XCTest
 @testable import Protoful
 
-final class AdvancedMultiplicableTests: XCTestCase {
+final class AdvancedDivisionTests: XCTestCase {
     
     // MARK: - Int
     
-    func testMultiplyInt() throws {
-        let number: Int = 20
+    func testDivisionInt() throws {
+        let firstNum: Int = 50
         
-        XCTAssertEqual(number.multiply(10), 200)
+        XCTAssertEqual(firstNum.divide(5), 10)
+    }
+    
+    func testDivisionIntZero() throws {
+        let firstNum: Int = 50
+        
+        XCTAssertEqual(firstNum.divide(0, replaceZeroWith: 1), 50)
     }
     
     // MARK: - Double
     
-    func testMultiplyDouble() throws {
-        let number: Double = 20.1000
+    func testDivisionDouble() throws {
+        let firstNum: Double = 50.50
         
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
+        XCTAssertEqual(String(format: "%.2f", firstNum.divide(5)), "10.10")
     }
     
-    // MARK: - Float
-    
-    func testMultiplyFloat() throws {
-        let number: Float = 20.1000
+    func testDivisionDoubleZero() throws {
+        let firstNum: Double = 50.00
         
-        XCTAssertEqual(String(format: "%.4f", number.multiply(10)), "201.0000")
+        XCTAssertEqual(String(format: "%.2f", firstNum.divide(0, replaceZeroWith: 1)), "50.00")
     }
 }
