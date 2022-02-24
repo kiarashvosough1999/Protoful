@@ -287,4 +287,14 @@ final class OptionalExtensionTests: XCTestCase {
         XCTAssertNil(willNilValue)
         
     }
+    
+    func testExpect() throws {
+        var willNilValue: Int? = 10
+        
+        XCTAssertEqual(try willNilValue.expect("is nil"), 10)
+        
+        willNilValue.toggleNil()
+        
+        XCTAssertThrowsError(try willNilValue.expect("is nil"))
+    }
 }

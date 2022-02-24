@@ -30,40 +30,74 @@ import CoreGraphics
 
 public protocol AdvancedPower {
     
-    var square: Double { get }
+    var square: Self { get }
     
-    func power(_ any: Self) -> Double
+    @inlinable
+    func power(_ any: Self) -> Self
     
-    func root(_ any: Self) -> Double
+    @inlinable
+    func root(_ n: Self, epsilon: Double) -> Self
 }
 
 public extension AdvancedPower where Self: BinaryFloatingPoint {
     
-    var square: Double {
-        pow(Double(self), Double(self))
+    var square: Self {
+        Self(pow(Double(self), Double(2)))
     }
     
-    func power(_ any: Self) -> Double {
-        pow(Double(self), Double(any))
+    @inlinable
+    func power(_ any: Self) -> Self {
+        Self(pow(Double(self), Double(any)))
     }
     
-    func root(_ any: Self) -> Double {
-        pow(Double(self), Double(1/any))
+    @inlinable
+    func root(_ n: Self, epsilon: Double = 2.220446049250313e-16) -> Self {
+        var d = Self(0)
+        var res = Self(1)
+        
+        guard self != 0 else {
+            return 0
+        }
+        
+        guard n >= 1 else {
+            return .nan
+        }
+        
+        repeat {
+            d = (self / res.power(n - 1) - res) / Self(n)
+            res += d
+        } while Double(d) >= epsilon * 10 || Double(d) <= -epsilon * 10
+        
+        return res
     }
 }
 
 public extension AdvancedPower where Self: BinaryInteger {
     
-    var square: Double {
-        pow(Double(self), Double(self))
+    var square: Self {
+        Self(pow(Double(self), Double(2)))
     }
     
-    func power(_ any: Self) -> Double {
-        pow(Double(self), Double(any))
+    @inlinable
+    func power(_ any: Self) -> Self {
+        Self(pow(Double(self), Double(any)))
     }
     
-    func root(_ any: Self) -> Double {
-        pow(Double(self), Double(1/any))
+    @inlinable
+    func root(_ n: Self, epsilon: Double = 2.220446049250313e-16) -> Self {
+        var d = Double(0)
+        var res = Double(1)
+        
+        guard self != 0 else { return 0 }
+        
+        guard n >= 1 else { return .zero }
+        
+        repeat {
+            d = (Double(self) / res.power(Double(n) - 1) - res) / Double(n)
+            res += d
+        } while d >= epsilon * 10 || d <= -epsilon * 10
+        
+        return Self(res)
     }
 }
 

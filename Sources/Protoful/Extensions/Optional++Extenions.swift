@@ -59,8 +59,17 @@ public extension Optional {
     }
     
     /// Returns the wrapped value or crashes with `fatalError(message)`
-    func expect(_ message: String) -> Wrapped {
-        guard let value = self else { fatalError(message) }
+    func expect(_ message: String) throws -> Wrapped {
+        #if DEBUG
+        guard let value = self else {
+            if NSClassFromString("XCTest") != nil {
+                throw OptionalError.Nil
+            }
+            fatalError(message)
+        }
+        #else
+        guard let value = self else { throw OptionalError.Nil }
+        #endif
         return value
     }
     
