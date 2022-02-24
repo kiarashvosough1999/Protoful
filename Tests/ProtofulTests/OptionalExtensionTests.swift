@@ -31,7 +31,7 @@ import XCTest
 final class OptionalExtensionTests: XCTestCase {
     
     func testIsNil() throws {
-        var myTestNumber: Int?
+        let myTestNumber: Int?  = .none
         let myTestNumber2: Int? = 1
         
         XCTAssertTrue(myTestNumber.isNil)
@@ -39,7 +39,7 @@ final class OptionalExtensionTests: XCTestCase {
     }
     
     func testIsNotNil() throws {
-        var myTestNumber: Int?
+        let myTestNumber: Int?  = .none
         let myTestNumber2: Int? = 1
         
         XCTAssertTrue(myTestNumber2.isNotNil)
@@ -48,7 +48,7 @@ final class OptionalExtensionTests: XCTestCase {
     
     func testMatching() throws {
         
-        var myNilTest: Int?
+        let myNilTest: Int? = .none
         
         let resNil = myNilTest.matching { number in
             return number > 5
@@ -118,7 +118,7 @@ final class OptionalExtensionTests: XCTestCase {
         XCTAssertNotNil(double)
         
         
-        var NilTest: Int?
+        let NilTest: Int? = .none
         
         let doubleNil: Double? = NilTest.map { value in
             return Double(value)
@@ -143,7 +143,7 @@ final class OptionalExtensionTests: XCTestCase {
 
         //
         
-        var nilTest: Int?
+        let nilTest: Int? = .none
         
         let hasNotExpectaion = XCTestExpectation()
         hasNotExpectaion.expectedFulfillmentCount = 1
@@ -174,7 +174,7 @@ final class OptionalExtensionTests: XCTestCase {
         XCTAssertEqual(Double(80), convertedValue)
         //
         
-        var nilTest: Int?
+        let nilTest: Int? = .none
         
         let hasNotExpectaion = XCTestExpectation()
         hasNotExpectaion.expectedFulfillmentCount = 1
@@ -193,7 +193,7 @@ final class OptionalExtensionTests: XCTestCase {
     
     func testOnAbsence() throws {
         
-        var nilTest: Int?
+        let nilTest: Int? = .none
         
         let matching1Expectaion = XCTestExpectation()
         matching1Expectaion.expectedFulfillmentCount = 1
@@ -207,13 +207,13 @@ final class OptionalExtensionTests: XCTestCase {
     
     func testOrDefault() throws {
         
-        var nilValue: Int?
+        let nilValue: Int? = .none
         
         let new = nilValue.or(10)
         
         XCTAssertEqual(new, 10)
         
-        var nonNilValue: Int? = 80
+        let nonNilValue: Int? = 80
         
         let old = nonNilValue.or(10)
         
@@ -222,7 +222,7 @@ final class OptionalExtensionTests: XCTestCase {
     
     func testOrElseClosure() throws {
         
-        var nilValue: Int?
+        let nilValue: Int? = .none
         
         let matching1Expectaion = XCTestExpectation()
         matching1Expectaion.expectedFulfillmentCount = 1
@@ -235,7 +235,7 @@ final class OptionalExtensionTests: XCTestCase {
         wait(for: [matching1Expectaion], timeout: 1)
         XCTAssertEqual(new, 10)
         
-        var nonNilValue: Int? = 80
+        let nonNilValue: Int? = 80
         
         let old = nonNilValue.or {
             return 10
@@ -246,13 +246,13 @@ final class OptionalExtensionTests: XCTestCase {
     
     func testOrElse() throws {
         
-        var nilValue: Int?
+        let nilValue: Int? = .none
         
         let new = nilValue.or(else: 10)
         
         XCTAssertEqual(new, 10)
         
-        var nonNilValue: Int? = 80
+        let nonNilValue: Int? = 80
         
         let old = nonNilValue.or(else: 10)
         
@@ -265,11 +265,11 @@ final class OptionalExtensionTests: XCTestCase {
             case NilValue
         }
         
-        var nilValue: Int?
+        let nilValue: Int? = .none
         
         XCTAssertThrowsError(try nilValue.or(throw: MyError.NilValue))
         
-        var nonNilValue: Int? = 80
+        let nonNilValue: Int? = 80
         
         XCTAssertEqual(try nonNilValue.or(throw: MyError.NilValue), 80)
         XCTAssertNoThrow(try nonNilValue.or(throw: MyError.NilValue))
