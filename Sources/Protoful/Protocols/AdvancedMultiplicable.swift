@@ -45,30 +45,3 @@ public extension AdvancedMultiplicable where Self: BinaryInteger {
         self * any
     }
 }
-
-// MARK: - Primitive types
-
-extension Double: AdvancedMultiplicable {}
-
-extension Float: AdvancedMultiplicable {}
-
-@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
-extension Float16: AdvancedMultiplicable {}
-
-extension CGFloat: AdvancedMultiplicable {}
-
-extension Int: AdvancedMultiplicable {}
-
-extension Int8: AdvancedMultiplicable {}
-
-extension Int32: AdvancedMultiplicable {}
-
-extension Int64: AdvancedMultiplicable {}
-
-extension UInt: AdvancedMultiplicable {}
-
-extension UInt8: AdvancedMultiplicable {}
-
-extension UInt32: AdvancedMultiplicable {}
-
-extension UInt64: AdvancedMultiplicable {}

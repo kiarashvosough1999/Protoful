@@ -58,30 +58,3 @@ public extension AdvancedDivision where Self: BinaryInteger {
         return self / any
     }
 }
-
-// MARK: - Primitive types
-
-extension Double: AdvancedDivision {}
-
-extension Float: AdvancedDivision {}
-
-@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
-extension Float16: AdvancedDivision {}
-
-extension CGFloat: AdvancedDivision {}
-
-extension Int: AdvancedDivision {}
-
-extension Int8: AdvancedDivision {}
-
-extension Int32: AdvancedDivision {}
-
-extension Int64: AdvancedDivision {}
-
-extension UInt: AdvancedDivision {}
-
-extension UInt8: AdvancedDivision {}
-
-extension UInt32: AdvancedDivision {}
-
-extension UInt64: AdvancedDivision {}

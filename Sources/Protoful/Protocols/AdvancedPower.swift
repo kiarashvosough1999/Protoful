@@ -100,30 +100,3 @@ public extension AdvancedPower where Self: BinaryInteger {
         return Self(res)
     }
 }
-
-// MARK: - Primitive types
-
-extension Double: AdvancedPower {}
-
-extension Float: AdvancedPower {}
-
-@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
-extension Float16: AdvancedPower {}
-
-extension CGFloat: AdvancedPower {}
-
-extension Int: AdvancedPower {}
-
-extension Int8: AdvancedPower {}
-
-extension Int32: AdvancedPower {}
-
-extension Int64: AdvancedPower {}
-
-extension UInt: AdvancedPower {}
-
-extension UInt8: AdvancedPower {}
-
-extension UInt32: AdvancedPower {}
-
-extension UInt64: AdvancedPower {}

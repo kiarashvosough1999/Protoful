@@ -50,30 +50,3 @@ public extension AdvancedComparable {
     func lessThanOrEqual(_ any: Self) -> Bool { self <= any }
     
 }
-
-// MARK: - Primitive types
-
-extension Double: AdvancedComparable {}
-
-extension Float: AdvancedComparable {}
-
-@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
-extension Float16: AdvancedComparable {}
-
-extension CGFloat: AdvancedComparable {}
-
-extension Int: AdvancedComparable {}
-
-extension Int8: AdvancedComparable {}
-
-extension Int32: AdvancedComparable {}
-
-extension Int64: AdvancedComparable {}
-
-extension UInt: AdvancedComparable {}
-
-extension UInt8: AdvancedComparable {}
-
-extension UInt32: AdvancedComparable {}
-
-extension UInt64: AdvancedComparable {}

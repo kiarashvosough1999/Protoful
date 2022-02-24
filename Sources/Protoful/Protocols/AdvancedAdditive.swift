@@ -45,30 +45,3 @@ public extension AdvancedAdditive where Self: BinaryInteger {
         self + any
     }
 }
-
-// MARK: - Primitive types
-
-extension Double: AdvancedAdditive {}
-
-extension Float: AdvancedAdditive {}
-
-@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
-extension Float16: AdvancedAdditive {}
-
-extension CGFloat: AdvancedAdditive {}
-
-extension Int: AdvancedAdditive {}
-
-extension Int8: AdvancedAdditive {}
-
-extension Int32: AdvancedAdditive {}
-
-extension Int64: AdvancedAdditive {}
-
-extension UInt: AdvancedAdditive {}
-
-extension UInt8: AdvancedAdditive {}
-
-extension UInt32: AdvancedAdditive {}
-
-extension UInt64: AdvancedAdditive {}

@@ -45,30 +45,3 @@ public extension AdvancedSubtractive where Self: BinaryInteger {
         self - any
     }
 }
-
-// MARK: - Primitive types
-
-extension Double: AdvancedSubtractive {}
-
-extension Float: AdvancedSubtractive {}
-
-@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
-extension Float16: AdvancedSubtractive {}
-
-extension CGFloat: AdvancedSubtractive {}
-
-extension Int: AdvancedSubtractive {}
-
-extension Int8: AdvancedSubtractive {}
-
-extension Int32: AdvancedSubtractive {}
-
-extension Int64: AdvancedSubtractive {}
-
-extension UInt: AdvancedSubtractive {}
-
-extension UInt8: AdvancedSubtractive {}
-
-extension UInt32: AdvancedSubtractive {}
-
-extension UInt64: AdvancedSubtractive {}
